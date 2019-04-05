@@ -111,6 +111,19 @@ public class SubclassClassifier<T, C> implements Classifier<T, C> {
 			value = this.classified.get(cls);
 		}
 
+		// check for interfaces subclasses
+		if (value == null) {
+			for (Class<?> cls = exceptionClass; !cls.equals(Object.class)
+					&& value == null; cls = cls.getSuperclass()) {
+				for (Class<?> ifc : cls.getInterfaces()) {
+					value = this.classified.get(ifc);
+					if (value != null) {
+						break;
+					}
+				}
+			}
+		}
+
 		// ConcurrentHashMap doesn't allow nulls
 		if (value != null) {
 			this.classified.put(exceptionClass, value);

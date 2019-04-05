@@ -192,7 +192,8 @@ public class EnableRetryWithBackoffTests {
 
 		private int count = 0;
 
-		@Retryable(backoff = @Backoff(delay = 1000, maxDelay = 2000, multiplier = 1.1, random = true))
+		@Retryable(backoff = @Backoff(delay = 1000, maxDelay = 2000, multiplier = 1.1,
+				random = true))
 		public void service(int value) {
 			if (count++ < 2) {
 				throw new RuntimeException("Planned");
