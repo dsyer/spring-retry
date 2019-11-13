@@ -523,7 +523,7 @@ public class RetryTemplate implements RetryOperations {
 		registerContext(context, state);
 	}
 
-	// есть стейт, есть ключ, сохраняем данный контекст в кэш: ключ -> контекст
+	// there is a state, there is a key, save this context in the cache: key -> context
 	private void registerContext(RetryContext context, RetryState state) {
 		if (state != null) {
 			Object key = state.getKey();
