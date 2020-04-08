@@ -62,7 +62,7 @@ public class SubclassClassifier<T, C> implements Classifier<T, C> {
 	/**
 	 * Create a {@link SubclassClassifier} with supplied default value.
 	 * @param defaultValue the default value
-	 * @param typeMap      the map of types
+	 * @param typeMap the map of types
 	 */
 	public SubclassClassifier(Map<Class<? extends T>, C> typeMap, C defaultValue) {
 		super();
@@ -92,7 +92,7 @@ public class SubclassClassifier<T, C> implements Classifier<T, C> {
 	/**
 	 * The keys is the type and this will be mapped along with all subclasses to the
 	 * corresponding value. The most specific types will match first.
-	 * @param type   the type of the input object
+	 * @param type the type of the input object
 	 * @param target the target value for all such types
 	 */
 	public void add(Class<? extends T> type, C target) {
@@ -120,15 +120,13 @@ public class SubclassClassifier<T, C> implements Classifier<T, C> {
 
 		// check for subclasses
 		C value = null;
-		for (Class<?> cls = exceptionClass; !cls.equals(Object.class)
-				&& value == null; cls = cls.getSuperclass()) {
+		for (Class<?> cls = exceptionClass; !cls.equals(Object.class) && value == null; cls = cls.getSuperclass()) {
 			value = this.classified.get(cls);
 		}
 
 		// check for interfaces subclasses
 		if (value == null) {
-			for (Class<?> cls = exceptionClass; !cls.equals(Object.class)
-					&& value == null; cls = cls.getSuperclass()) {
+			for (Class<?> cls = exceptionClass; !cls.equals(Object.class) && value == null; cls = cls.getSuperclass()) {
 				for (Class<?> ifc : getAllInterfacesForClass(cls)) {
 					value = this.classified.get(ifc);
 					if (value != null) {
@@ -174,4 +172,5 @@ public class SubclassClassifier<T, C> implements Classifier<T, C> {
 			getAllInterfacesForClass(ifc, set);
 		}
 	}
+
 }

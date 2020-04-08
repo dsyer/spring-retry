@@ -36,8 +36,7 @@ public class SubclassClassifierTests {
 	@Test
 	public void testClassifyMultipleInterface() {
 		SubclassClassifier<Object, String> classifier = new SubclassClassifier<Object, String>();
-		classifier.setTypeMap(
-				Collections.<Class<?>, String>singletonMap(Supplier.class, "foo"));
+		classifier.setTypeMap(Collections.<Class<?>, String>singletonMap(Supplier.class, "foo"));
 		assertEquals("foo", classifier.classify(new Spam()));
 	}
 
